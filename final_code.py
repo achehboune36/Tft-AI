@@ -53,7 +53,7 @@ for summID_idx in range(0,10000):
         try:
             acct_puuID_puller(summID_list[summID_idx])
             t += 1
-            print("Got One, its the: ", t, "th.")
+            print(t, "/10000")
         except KeyError:
             print("keyerror")
 
@@ -89,7 +89,7 @@ for acct_puuid in account_PuuIDs_list:
     else:
         match_ID_puller(acct_id)
         t += 1
-        print("Got one!, its the : ", t, "th!")
+        print(t, "/", len(account_PuuIDs_list))
 
 df = pd.DataFrame(matchID_list, columns = ["MatchId"])
 df.to_csv('MatchId.csv',mode = 'a')
@@ -182,7 +182,7 @@ for matchid in match_ids:
             print("KeyError")
 
 match_data = np.array(match_data)
-match_data.shape = -1,27
+match_data.shape = -1,27 #may cause problems
 
 df = pd.DataFrame(match_data, columns = column_titles)
 df.to_csv('Match_data.csv',mode = 'a')
