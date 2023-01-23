@@ -4,8 +4,9 @@ import json
 import time
 import pandas as pd
 import numpy as np
+from sklearn.ensemble import RandomForestClassifier
 
-#Riot API information
+#Riot API information and regions string formats
 api_key = ""
 region_f1 = "EUW1"
 region_f2 = "EUROPE"
@@ -63,7 +64,7 @@ df.to_csv('accountPuuId.csv',mode = 'a')
 
 #Getting last 7 matches for each player
 account_PuuIDs = pd.read_csv("accountPuuId.csv")
-account_PuuIDs_list = account_IDs["PuuId"]
+account_PuuIDs_list = account_PuuIDs["PuuId"]
 
 matchID_list = []
 pull_errors = []
@@ -84,10 +85,10 @@ def match_ID_puller(acctpuuid):
 t = 0
 for acct_puuid in account_PuuIDs_list:
     time.sleep(1.5)
-    if acct_id == "PuuId":
+    if acct_puuid == "PuuId":
         pass
     else:
-        match_ID_puller(acct_id)
+        match_ID_puller(acct_puuid)
         t += 1
         print(t, "/", len(account_PuuIDs_list))
 
