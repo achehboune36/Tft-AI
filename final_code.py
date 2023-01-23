@@ -5,6 +5,8 @@ import time
 import pandas as pd
 import numpy as np
 from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import confusion_matrix, plot_confusion_matrix
+import matplotlib.pyplot as plt
 
 #Riot API information and regions string formats
 api_key = ""
@@ -224,3 +226,10 @@ for i in range(len(testX)):
 print ("correct : ",correct)
 print ("incorrect : ",incorrect)
 print ("incorrect : ",difference/incorrect)
+
+y_pred = clf.predict(trainX)
+M = confusion_matrix(trainY, y_pred)
+tn, fp, fn, tp = M.ravel() 
+# plotting the confusion matrix
+plot_confusion_matrix(clf, X, y)
+plt.show()
